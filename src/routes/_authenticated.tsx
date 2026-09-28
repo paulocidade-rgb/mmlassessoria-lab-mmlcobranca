@@ -116,21 +116,23 @@ function AuthedLayout() {
                 : roles.map((r) => ROLE_LABELS[r]).join(", ")}
             </div>
           </div>
+        </div>
+      </aside>
+      <main className="flex-1 overflow-auto">
+        <header className="sticky top-0 z-10 flex h-16 items-center justify-end border-b border-border/60 bg-background/90 px-6 backdrop-blur-md md:px-8">
           <Button
-            variant="ghost"
+            variant="outline"
             size="sm"
-            className="w-full justify-start"
+            className="hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
             onClick={async () => {
               await signOut();
               navigate({ to: "/auth" });
             }}
           >
-            <LogOut className="w-4 h-4 mr-2" />
+            <LogOut className="w-4 h-4" />
             Sair
           </Button>
-        </div>
-      </aside>
-      <main className="flex-1 overflow-auto">
+        </header>
         <div className="max-w-7xl mx-auto p-6 md:p-8">
           <Outlet />
         </div>
