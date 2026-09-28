@@ -94,8 +94,20 @@ function AuthPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-50 p-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+      {/* Vídeo de fundo */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0"
+      >
+        <source src="/downloads/WhatsApp_Video_2026-09-17_at_21.07.42.mp4" type="video/mp4" />
+      </video>
+      {/* Overlay escuro para legibilidade */}
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px] z-10" />
+      <div className="w-full max-w-md relative z-20">
         <div className="flex items-center justify-center mb-6">
           <img
             src={photogenicLogo.url}
