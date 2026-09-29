@@ -119,19 +119,34 @@ function AuthedLayout() {
         </div>
       </aside>
       <main className="flex-1 overflow-auto">
-        <header className="sticky top-0 z-10 flex h-16 items-center justify-end border-b border-border/60 bg-background/90 px-6 backdrop-blur-md md:px-8">
-          <Button
-            variant="outline"
-            size="sm"
-            className="hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
-            onClick={async () => {
-              await signOut();
-              navigate({ to: "/auth" });
-            }}
-          >
-            <LogOut className="w-4 h-4" />
-            Sair
-          </Button>
+        <header className="sticky top-0 z-10 flex h-16 items-center justify-between border-b border-border/60 bg-background/90 px-6 backdrop-blur-md md:px-8">
+          <div className="text-xs md:text-sm text-muted-foreground font-medium">
+            Painel de Gestão
+          </div>
+          <div className="flex items-center gap-3 md:gap-4">
+            <div className="hidden sm:flex flex-col text-right">
+              <span className="text-xs font-semibold text-foreground truncate max-w-[220px]">
+                {user.email}
+              </span>
+              <span className="text-[11px] text-muted-foreground">
+                {roles.length === 0
+                  ? "Sem papel atribuído"
+                  : roles.map((r) => ROLE_LABELS[r]).join(", ")}
+              </span>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              className="hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 gap-2 border-border/80 hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30"
+              onClick={async () => {
+                await signOut();
+                navigate({ to: "/auth" });
+              }}
+            >
+              <LogOut className="w-4 h-4" />
+              Sair
+            </Button>
+          </div>
         </header>
         <div className="max-w-7xl mx-auto p-6 md:p-8">
           <Outlet />
